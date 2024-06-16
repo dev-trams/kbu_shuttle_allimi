@@ -5,6 +5,56 @@ class AdminHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final mediaWidht = MediaQuery.of(context).size.width;
+    final mediaHeight = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      body: SizedBox(
+        width: mediaWidht,
+        height: mediaHeight,
+        child: Row(
+          children: [
+            Flexible(
+                flex: 1,
+                child: SizedBox(
+                  width: mediaWidht,
+                  height: mediaHeight,
+                  child: const Column(
+                    children: [
+                      OutlinedButton(
+                        onPressed: null,
+                        child: Text('data'),
+                      ),
+                      OutlinedButton(
+                        onPressed: null,
+                        child: Text('data'),
+                      ),
+                      OutlinedButton(
+                        onPressed: null,
+                        child: Text('data'),
+                      ),
+                      OutlinedButton(
+                        onPressed: null,
+                        child: Text('data'),
+                      ),
+                    ],
+                  ),
+                )),
+            Flexible(
+                flex: 4,
+                child: SizedBox(
+                  width: mediaWidht,
+                  height: mediaHeight,
+                )),
+            Flexible(
+                flex: 2,
+                child: SizedBox(
+                  width: mediaWidht,
+                  height: mediaHeight,
+                )),
+          ],
+        ),
+      ),
+    );
   }
 }

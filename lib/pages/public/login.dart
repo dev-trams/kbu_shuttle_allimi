@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shuttle_allimi/utils/component/default_input_in_label.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -22,12 +23,16 @@ class LoginPage extends StatelessWidget {
                   flex: 1,
                   child: Card(
                     color: Colors.white,
-                    child: SizedBox(
-                      width: 300,
-                      height: 200,
-                      child: Image.network(
-                          'https://kbu.ac.kr/resources/_Img/Common/logo.png',
-                          scale: 1.5),
+                    child: GestureDetector(
+                      onTap: () =>
+                          {Navigator.pushNamed(context, '/admin/login')},
+                      child: SizedBox(
+                        width: 300,
+                        height: 200,
+                        child: Image.network(
+                            'https://kbu.ac.kr/resources/_Img/Common/logo.png',
+                            scale: 1.5),
+                      ),
                     ),
                   ),
                 ),
@@ -52,16 +57,19 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         const DefaultInputWidget(
+                          outlineStyle: true,
                           hintStr: '아이디',
                         ),
                         const DefaultInputWidget(
+                          outlineStyle: true,
                           hintStr: '비밀번호',
                         ),
                         SizedBox(
                           width: 300,
                           height: 50,
                           child: OutlinedButton(
-                            onPressed: null,
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/user'),
                             style: OutlinedButton.styleFrom(
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(
@@ -83,9 +91,21 @@ class LoginPage extends StatelessWidget {
                           child: Row(
                             children: [
                               const Text('계정이 없으신가요? '),
-                              GestureDetector(
-                                onTap: () => print('clicked!'),
-                                child: const Text('회원가입'),
+                              MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    Navigator.pushNamed(
+                                        context, '/user/signup'),
+                                  },
+                                  child: const Text(
+                                    '회원가입',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
                               )
                             ],
                           ),
@@ -98,25 +118,6 @@ class LoginPage extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class DefaultInputWidget extends StatelessWidget {
-  final hintStr;
-  const DefaultInputWidget({super.key, required this.hintStr});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 300,
-      height: 40,
-      child: TextField(
-        decoration: InputDecoration(
-            hintText: hintStr,
-            border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5)))),
       ),
     );
   }
